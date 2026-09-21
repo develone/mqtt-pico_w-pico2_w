@@ -151,3 +151,18 @@ devel@pi5-70:~ $ ./qq.sh
 T = 95.17 F 0x03e batt = 0.05 remote2 
 T = 88.43 F 0x046 batt = 0.06 remote1 
 T = 98.54 F 0x031 batt = 0.04 remote5
+add the IP of remote5
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/pi_tcp_tests $ ./build_cli.sh
+ 
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/pi_tcp_tests $ ./cli5
+Socket created successfully
+Connected with server successfully
+9/2026 12:17:50
+batt task 0x02e -> 0.037061 V 21/09/2026 12:18:21
+batt task 0x031 -> 0.039478 Vbatt task 0x02e -> 0.037061 V 21/09/2026 12:18:52
+batt task 0x02f -> 0.037866 V 21/09/2026 12:19:23
+batt task 0x033 -> 0.041089 V 21/09/2026 12:19:54
+batt task 0x02f -> 0.037866 V task 0x031 -> 0.039478 Vbatt task 0x030 -> 0.038672 V 21/09/2026 12:16:17
+batt task 0x033 -> 0.041089 V 21/09�G���
+
+
