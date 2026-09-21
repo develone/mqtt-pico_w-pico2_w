@@ -93,22 +93,11 @@ typedef struct NTP_T_ {
 #define in2 15
 #define enA 16
 /*needed for rtc */
-/*
-datetime_t t;
-datetime_t alarm;
-datetime_t t_ntp;
-datetime_t *pt;
-datetime_t *palarm;
-datetime_t *pt_ntp;
-*/
+
 u8_t rtc_set_flag = 0;
 char datetime_buf[256];
 char *datetime_str = &datetime_buf[0];
-/*needed for rtc */
-/*needed for ntp*/
-/*needed for GPIO from pico-examples/gpio/hello_7segment/hello_7segment.c
-gpio will be an additional freertos task
-*/
+
 #define FIRST_GPIO 18
 #define BUTTON_GPIO (FIRST_GPIO+7)
 
@@ -157,8 +146,7 @@ char PUB_PAYLOAD_SCR_T[]="                                       ";
 char PUB_EXTRA_ARG_T[] = "test";
 u16_t payload_t_size;
 
-/*needed for rtc 
-datetime_t t;*/
+
 #ifndef RUN_FREERTOS_ON_CORE
 #define RUN_FREERTOS_ON_CORE 0
 #endif
@@ -195,22 +183,7 @@ float read_onboard_temperature(char unit) {
     return -50.0f;
 }
 
-/*
-static void alarm_callback(void) {
-    datetime_t t = {0};
-    rtc_get_datetime(&t);
-    char datetime_buf[256];
-    char *datetime_str = &datetime_buf[0];
-    datetime_to_str(datetime_str, sizeof(datetime_buf), &t);
-    printf("Alarm Fired At %s\n", datetime_str);
-    sprintf(tmp,"Alarm Fired %s ",datetime_str);
-    ptrhead = head_tail_helper(ptrhead, ptrtail, ptrendofbuf, ptrtopofbuf, tmp);
-    //printf("client_message %s\n",client_message);
-    stdio_flush();
-    fired = true;
-    alarm_flg=1;
-}
-*/
+
 
 #if LWIP_TCP /*LWIP_TCP*/
 
@@ -220,8 +193,6 @@ static void alarm_callback(void) {
 	#ifndef LWIP_MQTT_EXAMPLE_IPADDR_INIT
 	#if LWIP_IPV4 /*LWIP_IPV4*/
 
-			/*192.168.1.212 0xc0a801d4 LWIP_MQTT_EXAMPLE_IPADDR_INIT pi4-50*/
-			//#define LWIP_MQTT_EXAMPLE_IPADDR_INIT = IPADDR4_INIT(PP_HTONL(0xc0a801d4))
 			/*40.160.235.122 0x28a0eb7a LWIP_MQTT_EXAMPLE_IPADDR_INIT ubunt-x86-64*/
 			#define LWIP_MQTT_EXAMPLE_IPADDR_INIT = IPADDR4_INIT(PP_HTONL(0x28a0eb7a))
 
@@ -302,25 +273,9 @@ mqtt_incoming_data_cb(void *arg, const u8_t *data, u16_t len, u8_t flags)
 }
 void process_cmd(u8_t rem, u8_t cc) {
     
-    //printf("0x%x 0x%x 0x%x 0x%x \n",&remotes[0], &remotes[1], &remotes[2], &CYW43_HOST_NAME);
-    //printf("%s %s %s \n",remotes[0], remotes[1], remotes[2]);
-    //printf("0x%x 0x%x 0x%x \n",&remotes[3], &remotes[4], &remotes[5]);
-    //printf("%s %s %s %s\n",remotes[3], remotes[4], remotes[5],CYW43_HOST_NAME);
-    /*
-    rr[0] = strcmp(remotes[0],CYW43_HOST_NAME);
-    rr[1]= strcmp(remotes[1],CYW43_HOST_NAME);
-    rr[2] = strcmp(remotes[2],CYW43_HOST_NAME); 
-    rr[3]= strcmp(remotes[3],CYW43_HOST_NAME);
-    rr[4] = strcmp(remotes[4],CYW43_HOST_NAME);
-    rr[5] = strcmp(remotes[5],CYW43_HOST_NAME);
-    */
-    //printf("%02d %02d %02d\n",alarm_hour,alarm_min,alarm_sec);
+
     printf("rem %d cc %d %s\n",rem,cc,CYW43_HOST_NAME);
-    //printf("old %d %02d %02d %02d\n",rtc_set_flag,palarm->hour, palarm->min, palarm->sec);
-    //palarm->hour = alarm_hour;
-    //palarm->min = alarm_min;
-    //palarm->sec = alarm_sec;
-    //printf("%02d %02d %02d\n",palarm->hour,palarm->min, palarm->sec);
+
 
     if(cc==1) {     
     if(((rr[0]==0) && (rem == 1)) || (rem==255)) {
@@ -333,7 +288,7 @@ void process_cmd(u8_t rem, u8_t cc) {
         printf("%s executes  rr %d rem %d\n", remotes[0],rr[0],rem);
         printf("all remotes execute\n");
         alarm_flg=0;
-        //rtc_set_alarm(&alarm, &alarm_callback);
+        
     }  
     if(((rr[2]==0) && (rem == 3)) || (rem==255)) {
          printf("%s executes  rr %d rem %d\n", remotes[0],rr[0],rem);
@@ -344,8 +299,8 @@ void process_cmd(u8_t rem, u8_t cc) {
     if(((rr[3]==0) && (rem == 4)) || (rem==255)) {
         printf("%s executes  rr %d rem %d\n", remotes[0],rr[0],rem);
         printf("all remotes execute\n");
-        //alarm_flg=0;
-        //rtc_set_alarm(&alarm, &alarm_callback);
+        alarm_flg=0;
+        
     }  
     if(((rr[4]==0) && (rem == 5)) || (rem==255)) {
          printf("%s executes  rr %d rem %d\n", remotes[0],rr[0],rem);
@@ -357,7 +312,7 @@ void process_cmd(u8_t rem, u8_t cc) {
         printf("%s executes  rr %d rem %d\n", remotes[0],rr[0],rem);
         printf("all remotes execute\n");
         alarm_flg=0;
-        //rtc_set_alarm(&alarm, &alarm_callback);
+        
     }    
     } /*cmd = 1*/
     if(cc==2) { 
@@ -429,10 +384,7 @@ void process_cmd(u8_t rem, u8_t cc) {
                     if(val>1) mask = bits[val] << FIRST_GPIO;
                  
                     printf("loop %d rem %d val %d mask %d bits 0x%x \n",loop,rem,val,mask,bits[val]);
-                    //sprintf(tmp,"val %d ",val);
-                    //head = head_tail_helper(head, tail, endofbuf, topofbuf, tmp);
-                     
-					//printf("mask 0x%x\n",mask);
+
                      
 
                     gpio_set_mask(mask);
@@ -595,17 +547,7 @@ mqtt_example_init(void)
           mqtt_connection_cb, LWIP_CONST_CAST(void*, &mqtt_client_info),
           &mqtt_client_info);
   cyw43_arch_lwip_end();
-  //printf("mqtt_client_connect 0x%x\n",mqtt_client_connect);
-
- 
-  //printf("0x%x \n",LWIP_CONST_CAST(void*, &mqtt_client_info));
-/*
-  strcpy(PUB_PAYLOAD_SCR,PUB_PAYLOAD);
-  strcat( PUB_PAYLOAD_SCR,CYW43_HOST_NAME);
-  payload_size = sizeof(PUB_PAYLOAD_SCR) + 7;
-  printf("%s  %d \n",PUB_PAYLOAD_SCR,sizeof(PUB_PAYLOAD_SCR));
-  mqtt_publish(mqtt_client,"pico/status",PUB_PAYLOAD_SCR,payload_size,2,0,pub_mqtt_request_cb_t,PUB_EXTRA_ARG);
-*/   
+  
           
 #endif /* LWIP_TCP */
 }
@@ -616,8 +558,8 @@ mqtt_example_init(void)
 
 // Report IP results and exit
 static void iperf_report(void *arg, enum lwiperf_report_type report_type,
-                         const ip_addr_t *local_addr, u16_t local_port, const ip_addr_t *remote_addr, u16_t remote_port,
-                         u32_t bytes_transferred, u32_t ms_duration, u32_t bandwidth_kbitpsec) {
+    const ip_addr_t *local_addr, u16_t local_port, const ip_addr_t *remote_addr, u16_t remote_port,
+    u32_t bytes_transferred, u32_t ms_duration, u32_t bandwidth_kbitpsec) {
     static uint32_t total_iperf_megabytes = 0;
     uint32_t mbytes = bytes_transferred / 1024 / 1024;
     float mbits = bandwidth_kbitpsec / 1000.0;
