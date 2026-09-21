@@ -1,0 +1,153 @@
+09/21/26
+devel@pi5-80:~/rebuild $ git clone https://github.com/develone/mqtt-pico_w-pico2_w.git
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./1remote.sh
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ls -la remote1/pico_w/wifi/freertos/iperf/
+total 7552
+drwxr-xr-x 3 devel devel    4096 Sep 21 06:57 .
+drwxr-xr-x 5 devel devel    4096 Sep 21 06:56 ..
+drwxr-xr-x 3 devel devel    4096 Sep 21 06:56 CMakeFiles
+-rw-r--r-- 1 devel devel    1161 Sep 21 06:56 cmake_install.cmake
+-rw-r--r-- 1 devel devel  391012 Sep 21 06:56 Makefile
+-rwxr-xr-x 1 devel devel  364424 Sep 21 06:57 picow_freertos_iperf_server_mqtt.bin
+-rw-r--r-- 1 devel devel 2342684 Sep 21 06:57 picow_freertos_iperf_server_mqtt.dis
+-rwxr-xr-x 1 devel devel 1991828 Sep 21 06:57 picow_freertos_iperf_server_mqtt.elf
+-rw-r--r-- 1 devel devel  863362 Sep 21 06:57 picow_freertos_iperf_server_mqtt.elf.map
+-rw-r--r-- 1 devel devel 1025098 Sep 21 06:57 picow_freertos_iperf_server_mqtt.hex
+-rw-r--r-- 1 devel devel  729088 Sep 21 06:57 picow_freertos_iperf_server_mqtt.uf2
+depress boot-sel and power-up on pico_w
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ df
+/dev/sda1         130924        8    130916   1% /media/devel/RPI-RP2
+
+devel@pi5-70:~ $ ./qq.sh 
+T = 34.63 C 0x03d batt = 0.05 remote2 
+T = 29.01 C 0x045 batt = 0.06 remote1 
+T = 36.97 C 0x031 batt = 0.04 remote5
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./1remote-pico2.sh
+depress boot-sel and power-up on pico2_w
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ df
+/dev/sda1         130924        8    130916   1% /media/devel/RP2350
+devel@pi5-80:~ $ minicom myusb0
+
+Welcome to minicom 2.8
+
+OPTIONS: I18n 
+Port /dev/ttyUSB0, 19:21:21
+
+Press CTRL-A Z for help on special keys
+0x20001964 0x20001964 0x20001b63 0x20001964 
+Starting FreeRTOS SMP on both cores:
+Connecting to Wi-Fi...
+Connected.
+0x20001964 0x20001964 0x20001b63 0x20001964 
+Connected. iperf server 192.168.12.133 4001  
+0x20001991 0x20001964 0x20001b63 0x20001964 
+mqtt_ip = 0x7aeba028 mqtt_port = 1883  
+MQTT client "remote2" connection cb: status 0
+MQTT client "remote2" request cb: err 0
+MQTT client "remote2" request cb: err 0
+blink_task starts
+Starting server at 192.168.12.133 on port 4001
+open_task starts
+close_task starts
+close_task close_flg 0                                                          
+open_task open_flg 0                                                            
+0x200019b8 0x20001964 0x20001b63 0x20000x20001964 0x20001964 0x20001b63 0x20001 
+Starting FreeRTOS SMP on both cores:                                            
+Connecting to Wi-Fi...                                                          
+Connected.                                                                      
+0x20001964 0x20001964 0x20001b63 0x20001964                                     
+Connected. iperf server 192.168.12.133 4001                                     
+0x20001991 0x20001964 0x20001b63 0x20001964                                     
+mqtt_ip = 0x7aeba028 mqtt_port = 1883                                           
+MQTT client "remote2" connection cb: status 0                                   
+MQTT client "remote2" request cb: err 0                                         
+MQTT client "remote2" request cb: err 0                                         
+blink_task starts                                                               
+Starting server at 192.168.12.133 on port 4001                                  
+open_task starts                                                                
+close_task starts                                                               
+ntp address 23.172.120.59                                                       
+open_task open_flg 0                                                            
+close_task close_flg 0                                                          
+0x200019b8 0x20001964 0x20001b63 0x20001964                                     
+batt task 0x042 -> 0.053174 V                                                   
+got ntp response: 21/09/2026 11:11:02                                           
+0x200019d5 0x20001964 0x20001b63 0x20001964                                     
+ 21/09/2026 11:11:02                                                            
+                                                                                
+open_task open_flg 0                                                            
+close_task close_flg 0                                                          
+open_task open_flg 0                                                            
+close_task close_flg 0                                                          
+open_task open_flg 0                                                            
+close_task close_flg 0                                                          
+open_task open_flg 0                                                            
+close_task close_flg 0                                                          
+open_task open_flg 0                                                            
+close_task close_flg 0                                                          
+open_task open_flg 0                                                            
+close_task close_flg 0 
+devel@pi5-70:~ $ ./qq.sh 
+T = 33.22 C 0x03e batt = 0.05 remote2 
+T = 31.35 C 0x045 batt = 0.06 remote1 
+T = 36.97 C 0x033 batt = 0.04 remote5 
+T = 33.69 C 0x03d batt = 0.05 remote2 
+T = 31.35 C 0x046 batt = 0.06 remote1 
+T = 36.97 C 0x02f batt = 0.04 remote5
+
+devel@pi5-70:~ $ sudo nmap -sP 192.168.12.0/24
+MAC Address: 18:A5:FF:FA:CE:06 (Unknown)
+Nmap scan report for remote1.lan (192.168.12.110)
+
+MAC Address: 24:CE:33:96:B7:22 (Amazon Technologies)
+Nmap scan report for remote2.lan (192.168.12.133)
+
+add the IP of remote1 & remote2 to
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ vi pi_tcp_tests/client.c
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./build_cli.sh 
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/pi_tcp_tests $ ./cli1
+Socket created successfully
+Connected with server successfully
+046 -> 0.056396 V 21/09/2026 11:22:53
+96 V 21/09/2026 11:18:45
+batt task 0x046 -> 0.056396 V 21/09/2026 11:19:16
+batt task 0x046 -> 0.056396 V 21/09/2026 11:19:47
+batt task 0x045 -> 0.055591 Vbatt task 0x046 -> 0.056396 V 21/09/2026 11:20:18
+batt task 0x046 -> 0.056396 V 21/09/2026 11:20:49
+batt task 0x045 -> 0.055591 Vbatt task 0x046 -> 0.056396 V 21/09/2026 11:21:20
+batt task 0x0��(��
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/pi_tcp_tests $ ./cli2
+Socket created successfully
+Connected with server successfully
+11:22:55
+batt task 0x03d -> 0.049146 V task 0x03e -> 0.049951 V 21/09/2026 11:19:18
+batt task 0x03d -> 0.049146 V 21/09/2026 11:19:49
+batt task 0x03e -> 0.049951 Vbatt task 0x03e -> 0.049951 V 21/09/2026 11:20:20
+batt task 0x03e -> 0.049951 V 21/09/2026 11:20:51
+batt task 0x03e -> 0.049951 Vbatt task 0x03e -> 0.049951 V 21/09/2026 11:21:22
+batt task 0x03e -> 0.049951 V 21/09/2026 1�Q���
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./pico-cmd-reset '40.160.235.122'
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/pi_tcp_tests $ ./cli1
+Socket created successfully
+Connected with server successfully
+Connected. iperf server 192.168.12.110 4001  mqtt_ip = 0x7aeba028 mqtt_port = 1883  batt task 0x046 -> 0.056396 V 21/09/2026 11:27:35
+batt task 0x046 -> 0.056396 V 21/09/2026 11:28:06
+batt task 0x046 -> 0.056396 V 21/09/2026 11:28:37
+batt task 0x047 -> 0.057202 V7890123456789012345678901234567890123456789012345678901230123456789012345678901234567890123456789012345678901234567890123p����
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/pi_tcp_tests $ ./cli2
+Socket created successfully
+Connected with server successfully
+Connected. iperf server 192.168.12.133 4001  mqtt_ip = 0x7aeba028 mqtt_port = 1883  batt task 0x03e -> 0.049951 V 21/09/2026 11:26:40
+batt task 0x03d -> 0.049146 V 21/09/2026 11:27:11
+batt task 0x03d -> 0.049146 V123456789012345678901234567890123456789012301234567890123456789012345678901234567890123456789012345678901230123456789012345678901234567890123456789012345678901234567890123�d���
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./pico-cmd-F '40.160.235.122'
+devel@pi5-70:~ $ ./qq.sh 
+T = 95.17 F 0x03e batt = 0.05 remote2 
+T = 88.43 F 0x046 batt = 0.06 remote1 
+T = 98.54 F 0x031 batt = 0.04 remote5
