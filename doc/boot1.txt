@@ -1,0 +1,24 @@
+0x2000150c 0x2000150c 0x2000170b 0x2000150c 
+Starting FreeRTOS SMP on both cores:
+Connecting to Wi-Fi...
+Connected.
+0x2000150c 0x2000150c 0x2000170b 0x2000150c 
+Connected. iperf server 192.168.12.110 4001  
+0x20001539 0x2000150c 0x2000170b 0x2000150c 
+mqtt_ip = 0x7aeba028 mqtt_port = 1883  
+MQTT client "remote1" connection cb: status 0
+MQTT client "remote1" request cb: err 0
+MQTT client "remote1" request cb: err 0
+Starting server at 192.168.12.110 on port 4001
+open_task starts
+close_task starts
+ntp address 172.234.44.141
+open_task open_flg 0
+close_task close_flg 0
+0x20001560 0x2000150c 0x2000170b 0x2000150c 
+batt task 0x047 -> 0.057202 V
+got ntp response: 20/09/2026 12:41:28
+0x2000157d 0x2000150c 0x2000170b 0x2000150c 
+ 20/09/2026 12:41:28 
+open_task open_flg 0
+close_task close_flg 0

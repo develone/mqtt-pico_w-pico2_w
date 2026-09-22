@@ -1,0 +1,14 @@
+0x20001964 0x20001964 0x20001b63 0x20001964 
+Starting FreeRTOS SMP on both cores:
+Connecting to Wi-Fi...
+Connected.
+0x20001964 0x20001964 0x20001b63 0x20001964 
+Connected. iperf server 192.168.12.133 4001  
+0x20001991 0x20001964 0x20001b63 0x20001964 
+mqtt_ip = 0x7aeba028 mqtt_port = 1883  
+MQTT client "remote2" connection cb: status 0
+MQTT client "remote2" request cb: err 0
+MQTT client "remote2" request cb: err 0
+blink_task starts
+Starting server at 192.168.12.133 on port 4001
+open_task starts
