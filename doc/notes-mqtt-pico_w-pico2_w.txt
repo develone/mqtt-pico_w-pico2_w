@@ -1,6 +1,11 @@
-09/21/26
+09/22/26
 devel@pi5-80:~/rebuild $ git clone https://github.com/develone/mqtt-pico_w-pico2_w.git
 
+devel@pi5-80:~/rebuild $ cd mqtt-pico_w-pico2_w
+
+Modify WIFI_SSID "with your WIFI_SSID" & WIFI_PASSWORD "with your WIFI_PASSWORD"
+ to your local settings in the file pico_w/wifi/freertos/iperf/picow_freertos_iperf.c 
+ 
 devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./1remote.sh
 
 devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ls -la remote1/pico_w/wifi/freertos/iperf/
@@ -20,6 +25,8 @@ depress boot-sel and power-up on pico_w
 devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ df
 /dev/sda1         130924        8    130916   1% /media/devel/RPI-RP2
 
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/ $ cp remote1/pico_w/wifi/freertos/iperf/picow_freertos_iperf_server_mqtt.uf2 /media/devel/RPI-RP2
+
 devel@pi5-70:~ $ ./qq.sh 
 T = 34.63 C 0x03d batt = 0.05 remote2 
 T = 29.01 C 0x045 batt = 0.06 remote1 
@@ -28,6 +35,9 @@ devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ ./1remote-pico2.sh
 depress boot-sel and power-up on pico2_w
 devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w $ df
 /dev/sda1         130924        8    130916   1% /media/devel/RP2350
+
+devel@pi5-80:~/rebuild/mqtt-pico_w-pico2_w/ $ cp remote2/pico_w/wifi/freertos/iperf/picow_freertos_iperf_server_mqtt.uf2 /media/devel/RPI-RP2
+
 devel@pi5-80:~ $ minicom myusb0
 
 Welcome to minicom 2.8
