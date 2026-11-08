@@ -1,0 +1,16 @@
+commit 04ea84f9c9b7afdde0ebbc2cbd69ed5edefe3c13 (HEAD -> main)
+Author: Edward Vidal Jr <develone@sbcglobal.net>
+Date:   Sun Nov 8 10:46:45 2026 -0700
+
+    need to modify line 829 WIFI_SSID & WIFI_PASSWORD
+    these are connecting to 40.160.235.122 0x28a0eb7a at line 196
+
+devel@pi5-90:~/pico2/freertos-lib/FreeRTOS-Kernel $
+
+commit 4f7299d6ea746b27a9dd19e87af568e34bd65b15 (HEAD -> main, origin/main, origin/HEAD)
+Author: graham sanderson <graham.sanderson@raspeberryi.com>
+Date:   Wed Jul 31 16:42:14 2024 -0500
+
+devel@pi5-90:~/pico2/freertos-lib/FreeRTOS-Kernel $ git branch -a
+* main
+
